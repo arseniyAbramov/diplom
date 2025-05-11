@@ -1,3 +1,4 @@
+import Checkbox from "@/Components/Checkbox";
 import { Head, useForm } from "@inertiajs/react";
 import IconArrowRight from "/public/arrow-right.svg";
 import Logo from "/public/logo-mechta.svg";
@@ -6,6 +7,7 @@ export default function Login() {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
+        remember: false,
     });
 
     const submit = (e) => {
@@ -70,7 +72,16 @@ export default function Login() {
                                 {errors.password}
                             </div>
                         )}
-
+                        <Checkbox
+                            name="remember"
+                            checked={data.remember}
+                            onChange={(e) =>
+                                setData("remember", e.target.checked)
+                            }
+                        />
+                        <span className="ms-2 text-sm text-gray-600">
+                            Запомнить меня
+                        </span>
                         {/* Забыли пароль */}
                         <div className="text-center mb-4">
                             <a
